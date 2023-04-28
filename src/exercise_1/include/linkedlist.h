@@ -56,8 +56,7 @@ namespace ds_ex
 	ds_ex::Chain<T>::~Chain()
 	{
 		Node<T> *next;
-		while (first)
-		{
+		while (first) {
 			next = first->next;
 			delete first;
 			first = next;
@@ -70,8 +69,7 @@ namespace ds_ex
 		Node<T> *current = first;
 		int len = 0;
 	
-		while (current)
-		{
+		while (current) {
 			len++;
 			current = current->next;
 		}
@@ -85,14 +83,12 @@ namespace ds_ex
 		Node<T> *current = first;
 
 		int index = 1;
-		while (index < k && current)
-		{
+		while (index < k && current) {
 			current = current->next;
 			index++;
 		}
 	
-		if (current)
-		{
+		if (current) {
 			x = current->data;
 			return true;
 		}
@@ -107,8 +103,7 @@ namespace ds_ex
 
 		Node<T> *current;
 		for (current = first; current;
-		     current = current->next)
-		{
+		     current = current->next) {
 			out << current->data << "  ";
 	
 		}
@@ -128,8 +123,7 @@ namespace ds_ex
 		if (k < 0) throw Out_Of_Bounds();
 	
 		Node<T> *p = first;
-		for (int index = 1; index < k && p; index++)
-		{	
+		for (int index = 1; index < k && p; index++) {	
 			p = p->next;
 		}
 	
@@ -139,13 +133,10 @@ namespace ds_ex
 		Node<T> *y = new Node<T>;
 		y->data = x;
 
-		if (k)
-		{
+		if (k) {
 			y->next = p->next;
 			p->next = y;
-		}
-		else
-		{
+		} else {
 			y->next = first;
 			first = y;
 		}
