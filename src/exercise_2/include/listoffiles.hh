@@ -9,21 +9,19 @@ namespace ds_ex {
     /**
      * Node of the list of files
     */
-    class Lof_node 
-    {
+    class Lof_node {
         friend Lof;
         private:
             uint8_t file_id;   // The number of the file.
             Lof_node *next; // The next node.
     };      
-    
+
     /**
      * The class below represents the list of files. This list 
      * used to store a number whitch is the file that contain
      * a certain word.
     */
-    class Lof
-    {
+    class Lof {
         private:
             Lof_node *first; // The first node of the linkedlist.            
         public:

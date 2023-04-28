@@ -2,6 +2,8 @@
 #define LINKED_LIST_OF_WORDS
 
 #include <string>
+#include <stdint.h>
+
 #include "listoffiles.hh"
 
 namespace ds_ex {
@@ -32,9 +34,10 @@ namespace ds_ex {
             /**
              * Insert the next file id in the right index, in order.
              * @param word The word to store in the list.
+             * @param file_id The file that contain the word.
              * @return The instance in whitch the oparation was made
              */ 
-            Low &insert_in_order(const std::string word);
+            Low &insert_in_order(const std::string word, uint8_t file_id);
             /**
              * Find the k file id.
              * @param dst Where the data are stored.
