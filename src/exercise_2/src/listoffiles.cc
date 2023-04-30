@@ -4,48 +4,83 @@
 
 using namespace ds_ex;
 
-// TODO - constructor
+Lof::Lof() 
+{
+    this->first = NULL;
+    this->len   = 0;
+}
 
-Lof& Lof::insert_in_order(const uint8_t file_id)
+Lof::~Lof()
+{
+    // free the memory of all nodes.
+    Lof_node *curr = this->first;
+    Lof_node *tmp  = NULL;
+    while (curr) {
+        tmp  = curr;
+        curr = tmp->next;
+        delete tmp;  
+    }
+}
+
+Lof& Lof::insert_in_order(const int file_id)
 {
     Lof_node *curr     = this->first;
     Lof_node *new_node = NULL;
+    Lof_node *parent   = NULL;
 
-    while (curr->file_id < file_id && curr->next);
-
-    // create a new node.
-    new_node = new Lof_node();
-    new_node->file_id = file_id;
-    new_node->next = NULL;
-
-    if (!curr->next) {
-        // If the new node stored at the end;
-        curr->next = new_node;
-    } else {
-        // If the new node must stored in an other index
-        new_node->next = curr->next;
-        curr->next = new_node;
+    // Find the location where the next element should be stored.
+    while (curr) {
+        if (!curr->next || curr->file_id >= file_id) break;
+        parent = curr;
+        curr = curr->next;
+    }
+    // Ignore if the file_id already exists.
+    if (curr) {
+        if (curr->file_id == file_id) {
+            return *this;
+        }
     }
 
+    // create a new node.
+    new_node          = new Lof_node();
+    new_node->file_id = file_id;
+    new_node->next    = NULL;
+
+    if (!this->first) {
+        this->first = new_node;
+    } else if (curr->file_id < file_id) {
+        curr->next = new_node;
+    } else {
+        new_node->next = curr;
+        if (curr == this->first) {
+            this->first = new_node;
+        } else {
+            parent->next = new_node;
+        }
+    }
+
+    // increase the number of elements.
+    ++this->len;
     return *this;
 }
 
-bool Lof::find(uint8_t &dst, int k) const
+bool Lof::find(int &dst, int k) const
 {
     Lof_node *curr = this->first;
     int index = 0;
-    while (index++ < k) curr = curr->next;
-    if (index == k) {
+    while (index != k && curr) {
+        curr = curr->next;
+        ++index;
+    }
+    if (index == k && curr) {
         dst = curr->file_id;
         return true;
-    }
+    } 
 
     return false;
 }
 
-bool Lof::is_empty() const
+int Lof::length() const 
 {
-    return (this->first == NULL)? true:false;
+    return this->len;
 }
-
-// TODO - destructor.

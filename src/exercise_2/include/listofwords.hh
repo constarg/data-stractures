@@ -17,9 +17,9 @@ namespace ds_ex {
         friend Low;
         private:
             std::string word;    // The word
-            int apear;      // This variable represent the times a word apeard
-            ds_ex::Lof *low;       // The list of files.
-            Low_node *next; // a pointer to the next element.
+            int appear;          // This variable represent the times a word apeard
+            ds_ex::Lof *lof;     // The list of files.
+            Low_node *next;      // a pointer to the next element.
     };
 
     /**
@@ -29,15 +29,20 @@ namespace ds_ex {
     class Low
     {
         private:
-            Low_node *first; // The first node of the linkedlist.            
+            Low_node *first; // The first node of the linkedlist.
+            int len;         // The length of the linkedlist.         
         public:
+            // constructor.
+            Low();
+            // destructor.
+            ~Low();
             /**
              * Insert the next file id in the right index, in order.
              * @param word The word to store in the list.
              * @param file_id The file that contain the word.
              * @return The instance in whitch the oparation was made
              */ 
-            Low &insert_in_order(const std::string word, uint8_t file_id);
+            Low &insert_in_order(const std::string word, int file_id);
             /**
              * Find the k file id.
              * @param dst Where the data are stored.
@@ -46,10 +51,25 @@ namespace ds_ex {
              */
             bool find(std::string &dst, int k) const;
             /**
-             * Check if the list is empty
-             * @param true if the list is empty, otherwise false.
-             */
-            bool is_empty() const;
+             * @return the length of the list
+            */
+            int length() const;
+            /**
+             * @param word The word of interest.
+             * @return How many times a word has appeared.
+            */
+            int get_appearance(const std::string word) const;
+            /**
+             * @param word The word of interest.
+             * @return The number of files that the word appeared.
+            */
+            int get_number_of_files_appeared(const std::string word) const;
+            /**
+             * @param word The word of interest.
+             * @return A pointer to an array that contains the file ids of 
+             * the files that contains the word @word.
+            */
+            ds_ex::Lof *get_lof(const std::string word) const;
     };
 }
 
