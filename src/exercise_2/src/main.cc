@@ -8,19 +8,19 @@
 #include "listofwords.hh"
 
 
-static uint8_t order_of_files[] = {26, 94, 22, 40, 43, 24, 87, 44, 
-                                   31, 45, 6 , 49, 14, 53, 58, 33, 
-                                   74, 13, 19, 93, 55, 71, 39, 29, 
-                                   10, 80, 86, 77, 79, 82,  9, 92, 
-                                   17, 96, 50,  2, 65, 90, 89, 11, 
-                                   57, 51, 68, 83, 66, 54, 27, 95, 
-                                   48, 81, 70, 25,  4, 60, 21, 76, 
-                                   75, 61, 15, 37, 30, 62, 34, 56, 
-                                   88, 59,  1, 32,  3, 73, 78, 42, 
-                                   16, 36,  7, 47, 12, 67, 85, 64, 
-                                   28, 52, 84, 98, 69, 41, 63, 72, 
-                                   46, 20, 18,100, 97, 99, 23, 38, 
-                                   35, 91,  8,  5};
+static int order_of_files[] = {26, 94, 22, 40, 43, 24, 87, 44, 
+                               31, 45, 6 , 49, 14, 53, 58, 33, 
+                               74, 13, 19, 93, 55, 71, 39, 29, 
+                               10, 80, 86, 77, 79, 82,  9, 92, 
+                               17, 96, 50,  2, 65, 90, 89, 11, 
+                               57, 51, 68, 83, 66, 54, 27, 95, 
+                               48, 81, 70, 25,  4, 60, 21, 76, 
+                               75, 61, 15, 37, 30, 62, 34, 56, 
+                               88, 59,  1, 32,  3, 73, 78, 42, 
+                               16, 36,  7, 47, 12, 67, 85, 64, 
+                               28, 52, 84, 98, 69, 41, 63, 72, 
+                               46, 20, 18,100, 97, 99, 23, 38, 
+                               35, 91,  8,  5};
 
 
 static void read_words_of(const std::string file_name, ds_ex::Low *low, int file_id)
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
     std::cout << "Retriving words..." << std::endl;
 
-    for (uint8_t file_id : order_of_files) {
+    for (int file_id : order_of_files) {
         // read each file with the order given in the order_of_files array.
         read_words_of(std::to_string(file_id), low, file_id);
         ++presentage;
